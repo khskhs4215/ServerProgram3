@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="dao.hit">	
+
+	<select id="top3StudentList" resultType="dto.ReplyDTO">
+		SELECT ROWNUM, A.SNO, A.NAME, A.KOR, A.ENG, A.MAT, A.AVE, A.GRADE
+		  FROM (SELECT SNO, NAME, KOR, ENG, MAT, AVE, GRADE
+		          FROM STUDENT
+		         ORDER BY AVE DESC) A
+		 WHERE <![CDATA[ROWNUM <= 3]]>
+	</select>
+
+</mapper>
